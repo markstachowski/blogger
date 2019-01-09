@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials::head('Dice Game')"></head>
+<body>
+<main role="main" class="container">
+  <div th:replace="partials::header"></div>
+  <div th:replace="partials::navbar"></div>
+  <h2>We just rolled ten dice, guess what we rolled the most.</h2>
+  <ul>
+    <li><a href="roll-dice/1">1</a></li>
+    <li><a href="roll-dice/2">2</a></li>
+    <li><a href="roll-dice/3">3</a></li>
+    <li><a href="roll-dice/4">4</a></li>
+    <li><a href="roll-dice/5">5</a></li>
+    <li><a href="roll-dice/6">6</a></li>
+  </ul>
+
+  <div th:replace="partials::footer"></div>
+</main><!-- /.container -->
+<div th:replace="partials::scripts"></div>
+
+</body>
+</html>

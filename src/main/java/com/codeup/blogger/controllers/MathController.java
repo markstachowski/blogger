@@ -1,29 +1,34 @@
 package com.codeup.blogger.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
 public class MathController {
 
-  @GetMapping("/add/{num1}/add/{num2}")
-  public int add(@PathVariable int num1, @PathVariable int num2) {
-    return num1 + num2;
+  @ResponseBody
+  @GetMapping("/add/{a}/and/{b}")
+  public double add(@PathVariable double a, @PathVariable double b) {
+    return a + b;
   }
 
-  @GetMapping("/sub/{num1}/from/{num2}")
-  public int sub(@PathVariable int num1, @PathVariable int num2) {
-    return num1 - num2;
+  @ResponseBody
+  @GetMapping("/subtract/{a}/from/{b}")
+  public double subtract(@PathVariable double a, @PathVariable double b) {
+    return b - a;
   }
 
-  @GetMapping("/div/{num1}/by/{num2}")
-  public int div(@PathVariable int num1, @PathVariable int num2) {
-    return num1 / num2;
+  @GetMapping("/multiply/{a}/and/{b}")
+  @ResponseBody
+  public double multiply(@PathVariable double a, @PathVariable double b) {
+    return a * b;
   }
 
-  @GetMapping("/mult/{num1}/and/{num2}")
-  public int mult(@PathVariable int num1, @PathVariable int num2) {
-    return num1 * num2;
+  @ResponseBody
+  @GetMapping("/divide/{numerator}/by/{denominator}")
+  public double divide(@PathVariable double numerator, @PathVariable double denominator) {
+    return numerator / denominator;
   }
 }
