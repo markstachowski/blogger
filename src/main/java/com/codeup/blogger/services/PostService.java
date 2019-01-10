@@ -28,6 +28,12 @@ public class PostService {
     return posts.get(id - 1);
   }
 
+  public Post save(Post post) {
+    post.setId(posts.size() + 1);
+    posts.add(post);
+    return post;
+  }
+
   private void createPosts() {
     create(new Post("New Post 1", "lorem impsum dolor set amit"));
     create(new Post("New Post 2", "lorem impsum dolor set amit"));

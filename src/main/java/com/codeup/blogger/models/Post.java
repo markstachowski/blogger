@@ -1,9 +1,13 @@
 package com.codeup.blogger.models;
 
 public class Post {
+
   private String title;
   private String body;
   private int id;
+
+  public Post() {
+  }
 
   public Post(String title, String body) {
     this.title = title;

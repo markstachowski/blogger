@@ -1,12 +1,13 @@
 package com.codeup.blogger.controllers;
 
+import com.codeup.blogger.models.Post;
 import com.codeup.blogger.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PostController {
@@ -32,14 +33,14 @@ public class PostController {
   }
 
   @GetMapping("/posts/create")
-  @ResponseBody
-  public String create() {
-    return "View the form for creating a post";
+  public String create(Model model) {
+    model.addAttribute("post", new Post());
+    return "posts/create";
   }
 
-  @PostMapping("/posts")
-  @ResponseBody
-  public String save() {
-    return "Handle the POST request for saving a new blog post";
+  @PostMapping("/posts/create")
+  public String save(@ModelAttribute Post post) {
+    postService.save(post);
+    return "redirect:http://localhost:8080/posts";
   }
 }
