@@ -29,7 +29,6 @@ public class PostController {
     model.addAttribute("post",postService.findOne(id));
     model.addAttribute("id", id);
     return "posts/show";
-
   }
 
   @GetMapping("/posts/create")
@@ -40,7 +39,7 @@ public class PostController {
 
   @PostMapping("/posts/create")
   public String saveNewPost(@ModelAttribute Post post) {
-    postService.create(post);
+    postService.edit(post);
     return "redirect:/posts";
   }
 
@@ -55,5 +54,12 @@ public class PostController {
     String page = Integer.toString(post.getId());
     postService.edit(post);
     return "redirect:/posts/" + page;
+  }
+
+  @GetMapping("/posts/{id}/delete")
+  public String deletePost(@PathVariable int id, Model model) {
+    model.addAttribute("post",postService.findOne(id));
+    postService.delete(postService.findOne(id));
+    return "redirect:/posts";
   }
 }
