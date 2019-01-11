@@ -25,7 +25,7 @@ public class PostController {
   }
 
   @GetMapping("/posts/{id}")
-  public String show(@PathVariable int id, Model model) {
+  public String showPost(@PathVariable int id, Model model) {
     model.addAttribute("post",postService.findOne(id));
     model.addAttribute("id", id);
     return "posts/show";
@@ -33,14 +33,27 @@ public class PostController {
   }
 
   @GetMapping("/posts/create")
-  public String create(Model model) {
-    model.addAttribute("post", new Post());
+  public String showCreateForm(Model model) {
+    model.addAttribute("post",new Post());
     return "posts/create";
   }
 
   @PostMapping("/posts/create")
-  public String save(@ModelAttribute Post post) {
-    postService.save(post);
-    return "redirect:http://localhost:8080/posts";
+  public String saveNewPost(@ModelAttribute Post post) {
+    postService.create(post);
+    return "redirect:/posts";
+  }
+
+  @GetMapping("/posts/{id}/edit")
+  public String showEditForm(@PathVariable int id, Model model) {
+    model.addAttribute("post",postService.findOne(id));
+    return "posts/edit";
+  }
+
+  @PostMapping("/posts/{id}/edit")
+  public String editPost(@ModelAttribute Post post) {
+    String page = Integer.toString(post.getId());
+    postService.edit(post);
+    return "redirect:/posts/" + page;
   }
 }

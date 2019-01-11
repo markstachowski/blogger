@@ -6,15 +6,14 @@ public class Post {
   private String body;
   private int id;
 
-  public Post() {
-  }
+  public Post() {}
 
   public Post(String title, String body) {
     this.title = title;
     this.body = body;
   }
-  public Post(String title, String body, int id) {
-    this(title, body);
+  public Post(String title, String body,int id) {
+    this(title,body);
     this.setId(id);
   }
 

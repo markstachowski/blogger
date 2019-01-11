@@ -7,15 +7,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PostService {
-
   private List<Post> posts;
 
   public PostService() {
     posts = new ArrayList<>();
+    createPosts();
   }
 
   public List<Post> all() {
     return posts;
+  }
+
+  public Post findOne(int id) {
+    return posts.get(id - 1);
   }
 
   public Post create(Post post) {
@@ -24,13 +28,12 @@ public class PostService {
     return post;
   }
 
-  public Post findOne(int id) {
-    return posts.get(id - 1);
-  }
-
-  public Post save(Post post) {
-    post.setId(posts.size() + 1);
-    posts.add(post);
+  public Post edit(Post post) {
+    post.setId(post.getId() - 1);
+    posts.set(post.getId(), post);
+//        Post pp = posts.get(post.getId() - 1);
+//        pp.setTitle(post.getTitle());
+//        pp.setBody(post.getBody());
     return post;
   }
 
