@@ -1,9 +1,12 @@
 package com.codeup.blogger.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Post {
@@ -14,8 +17,12 @@ public class Post {
   @Column(nullable = false, length = 240)
   private String title;
 
-  @Column(nullable = false)
+  @Column(nullable = false, length = 10000)
   private String body;
+
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "user_id")
+  private User owner;
 
   public Post() {}
 
@@ -23,9 +30,17 @@ public class Post {
     this.title = title;
     this.body = body;
   }
+
   public Post(String title, String body,int id) {
     this(title,body);
     this.setId(id);
+  }
+
+  public Post(String title, String body, User owner, int id) {
+    this.title = title;
+    this.body = body;
+    this.owner = owner;
+    this.id = id;
   }
 
   public int getId() {
@@ -50,5 +65,13 @@ public class Post {
 
   public void setBody(String body) {
     this.body = body;
+  }
+
+  public User getOwner() {
+    return owner;
+  }
+
+  public void setOwner(User owner) {
+    this.owner = owner;
   }
 }
