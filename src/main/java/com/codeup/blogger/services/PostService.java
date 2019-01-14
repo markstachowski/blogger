@@ -1,44 +1,35 @@
 package com.codeup.blogger.services;
 
+import com.codeup.blogger.controllers.PostRepository;
 import com.codeup.blogger.models.Post;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PostService {
 
-  private List<Post> posts;
+  private final PostRepository postDao;
 
-  public PostService() {
-    posts = new ArrayList<>();
+  public PostService(PostRepository postDao) {
+    this.postDao = postDao;
   }
 
   public List<Post> all() {
-    return posts;
-  }
-
-  public Post create(Post post) {
-    post.setId(posts.size() + 1);
-    posts.add(post);
-    return post;
+    return (List<Post>) postDao.findAll();
   }
 
   public Post findOne(int id) {
-    return posts.get(id - 1);
+    return postDao.findOne(id);
   }
 
-  public Post save(Post post) {
-    post.setId(posts.size() + 1);
-    posts.add(post);
+  public Post edit(Post post) {
+    postDao.save(post);
     return post;
   }
 
-  private void createPosts() {
-    create(new Post("New Post 1", "lorem impsum dolor set amit"));
-    create(new Post("New Post 2", "lorem impsum dolor set amit"));
-    create(new Post("New Post 3", "lorem impsum dolor set amit"));
-    create(new Post("New Post 4", "lorem impsum dolor set amit"));
-    create(new Post("New Post 5", "lorem impsum dolor set amit"));
+  public Post delete(Post post) {
+    postDao.delete(post);
+    return post;
   }
+
 }

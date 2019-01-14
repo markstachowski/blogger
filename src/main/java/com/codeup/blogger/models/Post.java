@@ -1,20 +1,30 @@
 package com.codeup.blogger.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Post {
 
-  private String title;
-  private String body;
+  @Id @GeneratedValue
   private int id;
 
-  public Post() {
-  }
+  @Column(nullable = false, length = 240)
+  private String title;
+
+  @Column(nullable = false)
+  private String body;
+
+  public Post() {}
 
   public Post(String title, String body) {
     this.title = title;
     this.body = body;
   }
-  public Post(String title, String body, int id) {
-    this(title, body);
+  public Post(String title, String body,int id) {
+    this(title,body);
     this.setId(id);
   }
 
