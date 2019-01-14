@@ -11,10 +11,10 @@
       <h5 class="card-title">New Post</h5>
       <form class="card-text" th:action="'/posts/' + ${post.id} + '/edit'" method="post" th:object="${post}">
         Title:
-        <input th:field="*{title}" />
+        <input class="form-control" type="text" th:field="*{title}" />
         <br />
         Body:
-        <textarea th:field="*{body}" ></textarea>
+        <textarea class="form-control" rows="3" th:field="*{body}" ></textarea>
         <br />
         <button type="submit">Edit</button>
       </form>
