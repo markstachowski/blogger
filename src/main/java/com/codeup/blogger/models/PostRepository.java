@@ -1,6 +1,5 @@
-package com.codeup.blogger.controllers;
+package com.codeup.blogger.models;
 
-import com.codeup.blogger.models.Post;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PostRepository extends CrudRepository<Post, Integer> {
