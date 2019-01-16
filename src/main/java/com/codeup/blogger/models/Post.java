@@ -1,6 +1,5 @@
 package com.codeup.blogger.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +19,7 @@ public class Post {
   @Column(nullable = false, length = 10000)
   private String body;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "user_id")
   private User owner;
 

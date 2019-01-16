@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class User {
@@ -11,12 +13,16 @@ public class User {
   @Id @GeneratedValue
   private int id;
 
+  @NotBlank(message = "Username can not be blank")
   @Column(nullable = false, unique = true)
   private String username;
 
+  @NotBlank(message = "Email can not be blank")
   @Column(nullable = false, unique = true)
   private String email;
 
+  @NotBlank(message = "Password can not be blank")
+  @Size(min = 8, message = "A password must be at least 8 characters.")
   @Column(nullable = false)
   private String password;
 

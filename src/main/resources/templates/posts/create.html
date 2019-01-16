@@ -9,8 +9,7 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">New Post</h5>
-      <form class="card-text" action="/posts/create" method="post" th:object="${post}">
-        <input class="form-control" type="text" style="display:none;" th:field="*{owner}" />
+      <form class="card-text" th:action="@{/posts/create}" method="post" th:object="${post}">
         <br />
         Title:
         <input class="form-control" type="text" th:field="*{title}" />

@@ -1,7 +1,9 @@
 package com.codeup.blogger.controllers;
 
 import com.codeup.blogger.models.Post;
+import com.codeup.blogger.models.User;
 import com.codeup.blogger.services.PostService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +30,7 @@ public class PostController {
   public String showPost(@PathVariable int id, Model model) {
     model.addAttribute("post",postService.findOne(id));
     model.addAttribute("id", id);
+    model.addAttribute("user", postService.findOne(id).getOwner());
     return "posts/show";
   }
 
@@ -39,6 +42,8 @@ public class PostController {
 
   @PostMapping("/posts/create")
   public String saveNewPost(@ModelAttribute Post post) {
+    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    post.setOwner(user);
     postService.edit(post);
     return "redirect:/posts";
   }
