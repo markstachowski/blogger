@@ -8,8 +8,7 @@
 
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Written by: <span th:text="${user.email}"></span></h5>
-      <h5><span th:text="${post.title}"></span></h5>
+      <h5 class="card-title"><span th:text="${post.title}"></span></h5>
       <p class="card-text"><span th:text="${post.body}"></span> </p>
       <a th:href="${post.id} + '/edit'" class="btn-info btn-sm">Edit</a>
       <a th:href="${post.id} + '/delete'" class="btn-danger btn-sm">Delete</a>
