@@ -11,12 +11,16 @@ public class User {
   @Id @GeneratedValue
   private int id;
 
+//  @NotBlank(message = "Username can not be blank")
   @Column(nullable = false, unique = true)
   private String username;
 
+//  @NotBlank(message = "Email can not be blank")
   @Column(nullable = false, unique = true)
   private String email;
 
+//  @NotBlank(message = "Password can not be blank")
+//  @Size(min = 8, message = "A password must be at least 8 characters.")
   @Column(nullable = false)
   private String password;
 
